@@ -17,8 +17,7 @@
         <option value="Adventure">Wisata Adventure</option>
         <option value="Spiritual">Wisata Spiritual</option>
         <option value="Edukasi">Wisata Edukasi</option>
-    </select>
-    
+    </select>    
 
     <label for="harga_tiket">Harga Tiket Masuk</label>
     <input class="input" type="text" name="harga_tiket" id="harga_tiket" placeholder="harga_tiket" value="{{ old('harga_tiket') }}" />
@@ -45,22 +44,26 @@
     @enderror
 
     <label for="parkir">Parkir</label>
-    <input class="input" type="text" name="parkir" id="parkir" placeholder="parkir" value="{{ old('parkir') }}" />
-    @error('parkir')
-    <p style="font-size: 10px; color: red">{{ $message }}</p>
-    @enderror
+    <select class="input" for="parkir"  name="parkir" id="parkir" placeholder="parkir" value="{{ old('parkir') }}">
+      <option selected>parkir wisata</option>
+      <option value="Buruk">Buruk (Area parkir sempit atau tidak tersedia, tidak tertata, tidak ada petugas parkir.)</option>
+      <option value="Cukup">Cukup(Area parkir tersedia namun terbatas, kurang tertata .)</option>
+      <option value="Baik">Baik(Area parkir luas, tertata rapi, aman, akses mudah ke lokasi wisata.)</option>
+  </select> 
 
     <label for="toilet">Toilet</label>
-    <input class="input" type="text" name="toilet" id="toilet" placeholder="toilet" value="{{ old('toilet') }}" />
-    @error('toilet')
-    <p style="font-size: 10px; color: red">{{ $message }}</p>
-    @enderror
+    <select class="input" for="toilet"  name="toilet" id="toilet" placeholder="toilet" value="{{ old('toilet') }}">
+      <option selected>Toilet</option>
+      <option value="Buruk">Buruk (Toilet kotor, air tidak tersedia atau sangat terbatas, fasilitas minim atau rusak, tidak nyaman digunakan)</option>
+      <option value="Cukup">Cukup(Toilet cukup bersih, air tersedia meskipun kadang terbatas, fasilitas ada namun kurang lengkap)</option>
+      <option value="Baik">Baik(Toilet bersih, air dan fasilitas pendukung tersedia, pencahayaan baik, nyaman dan layak digunakan)</option>
+  </select> 
 
     <label for="tempat_difabel">Tempat Untuk Difabel</label>
     <select class="input" for="tempat_difabel"  name="tempat_difabel" id="tempat_difabel" placeholder="tempat_difabel" value="{{ old('tempat_difabel') }}">
         <option >Tempat Difabel</option>
-        <option value="1">Tidak Tersedia</option>
-        <option value="2">Tersedia</option>
+        <option value="Tidak Tersedia">Tidak Tersedia</option>
+        <option value="Tersedia">Tersedia</option>
     </select>
 
     <label for="jarak">Jarak dari Pusat Kota</label>
@@ -72,22 +75,17 @@
     <label for="tersedia_transportasi">Tersedia Transportasi</label>
     <select class="input" for="tersedia_transportasi"  name="tersedia_transportasi" id="tersedia_transportasi" placeholder="tersedia_transportasi" value="{{ old('tersedia_transportasi') }}">
         <option selected>Tempat Difabel</option>
-        <option value="1">Tidak Tersedia</option>
-        <option value="2">Tersedia</option>
+        <option value="Tidak Tersedia">Tidak Tersedia</option>
+        <option value="Tersedia">Tersedia</option>
     </select>
-    @error('tersedia_transportasi')
-    <p style="font-size: 10px; color: red">{{ $message }}</p>
-    @enderror
 
     <label for="kondisi_jalan">Kondisi Jalan</label>
     <select class="input" for="kondisi_jalan"  name="kondisi_jalan" id="kondisi_jalan" placeholder="kondisi_jalan" value="{{ old('kondisi_jalan') }}">
         <option selected>Tempat Difabel</option>
-        <option value="1">Tidak Tersedia</option>
-        <option value="2">Tersedia</option>
+        <option value="Buruk">Buruk (Jalan rusak, berlubang, tidak ada pengaspalan, sulit dilalui, atau jalur utama terhalang)</option>
+        <option value="Cukup">Cukup (Jalan dalam kondisi sedang, ada beberapa kerusakan atau lubang, tapi masih dapat dilalui kendaraan dengan hati-hati.)</option>
+        <option value="Baik">Baik (Jalan mulus, terawat, pengaspalan baik, tidak ada kerusakan atau hambatan, aman dan mudah dilalui.)</option>
     </select>
-    @error('kondisi_jalan')
-    <p style="font-size: 10px; color: red">{{ $message }}</p>
-    @enderror
 
     <label for="rating">rating</label>
     <input class="input" type="text" name="rating" id="rating" placeholder="rating" value="{{ old('rating') }}" />
