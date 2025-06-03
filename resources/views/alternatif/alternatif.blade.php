@@ -1,8 +1,8 @@
 @extends('layout.main')
 
 @section('content')
-    <div>
-        <h2 style="margin-top: 20px">Alternatif</h2>
+    <div style="margin-bottom: 50px;">
+        <h2 style="margin-top: 10px; ">Data Alternatif</h2>
         <table style="margin-top: 10px" class="table-data">
             <button type="button" style="margin-top: 20px" class="btn btn-tambah">
                 <a href="{{ route('alternatif.alternatif-entry') }}">Tambah Data</a>
@@ -12,8 +12,10 @@
                     <th>No</th>
                     <th style="width: 20%">Nama </th>
                     <th style="width: 20%">Lokasi</th>
+                    <th style="width: 20%">Kategori</th>
                     <th style="width: 20%">Latitude</th>
                     <th style="width: 20%">Longitude</th>
+                    <th style="width: 20%">Gambar</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -23,8 +25,12 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $alternatif->nama }}</td>
                         <td>{{ $alternatif->lokasi }}</td>
+                        <td>{{ $alternatif->kategori->nama }}</td>
                         <td>{{ $alternatif->latitude }}</td>
                         <td>{{ $alternatif->longitude }}</td>
+                        <td>
+                            <img src="{{ asset('storage/' . $alternatif->gambar) }}" alt="Gambar" style="width: 100px; height: auto; border-radius: 8px;">
+                        </td>
                         <td>
                             <a href="{{ route('alternatif.alternatif-edit', ['id' => $alternatif->id]) }}"
                                 class="btn btn-edit" style="display: inline-block;">

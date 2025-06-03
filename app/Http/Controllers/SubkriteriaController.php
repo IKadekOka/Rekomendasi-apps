@@ -33,7 +33,7 @@ class SubkriteriaController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('sub_kriteria.sub_kriteria');
+        return redirect()->route('sub_kriteria.sub_kriteria')->with('success', 'Data kriteria berhasil ditambahkan!');
     }
     public function edit($id)
     {
@@ -55,7 +55,7 @@ class SubkriteriaController extends Controller
             'kriteria_id' => $request->kriteria_id,
             'type' => $request->type,
         ]);
-        return redirect()->route('sub_kriteria.sub_kriteria');
+        return redirect()->route('sub_kriteria.sub_kriteria')->with('success', 'Data kriteria berhasil diperbarui!');
     }
     public function hapus($id)
     {

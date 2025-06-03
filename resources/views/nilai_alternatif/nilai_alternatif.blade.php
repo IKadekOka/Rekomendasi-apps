@@ -1,12 +1,12 @@
 @extends('layout.main')
 
 @section('content')
-    <div>
+    <div style="margin-bottom: 50px;">
         <h2 style="margin-top: 20px">Nilai Alternatif</h2>
         <button type="button" style="margin-top: 20px" class="btn btn-tambah">
             <a href="{{ route('nilai_alternatif.nilai_alternatif-entry') }}">Tambah Data</a>
         </button>
-        <table style="margin-top: 10px" class="table-data">
+        <table style="margin-top: 10px; margin-bottom: 50px;" class="table-data">
             <thead>
                 <tr>
                     <th>No</th>

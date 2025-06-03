@@ -73,7 +73,6 @@ class DeskripsiController extends Controller
     {
         $skala_deskripsis = Deskripsi::findOrFail($id);
         $skala_deskripsis->delete();
-
         return redirect()->route('deskripsi.deskripsi', ['id' => $skala_deskripsis->sub_kriteria_id])->with('success', 'Data berhasil dihapus.');
     }
 }

@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-    <div>
+    <div style="margin-bottom: 50px;">
         <h2 style="margin-top: 20px">Data Sub Kreteria</h2>
         <button type="button" style="margin-top: 20px" class="btn btn-tambah">
             <a href="{{ route('sub_kriteria.sub_kriteria-entry') }}">Tambah Data</a>

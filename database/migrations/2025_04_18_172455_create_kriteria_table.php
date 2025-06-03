@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama',50);
             $table->float('bobot',50);
+            $table->string('type',50);
             $table->timestamps();
         });
     }

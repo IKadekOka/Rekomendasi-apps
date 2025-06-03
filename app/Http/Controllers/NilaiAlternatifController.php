@@ -17,9 +17,6 @@ class NilaiAlternatifController extends Controller
     public function index()
     {
         $nilaiAlternatif = nilai_alternatif::with(['alternatif', 'kriteria', 'subKriteria'])->get();
-
-        
-
         return view('nilai_alternatif.nilai_alternatif', compact('nilaiAlternatif'));
     }
 
@@ -53,6 +50,15 @@ class NilaiAlternatifController extends Controller
             'subkriteria_id' => 'required',
             'nilai' => 'required'
         ]);
+
+        // Cek apakah subkriteria_id sudah pernah digunakan untuk alternatif_id yang sama
+        $cek = nilai_alternatif::where('alternatif_id', $request->alternatif_id)
+        ->where('subkriteria_id', $request->subkriteria_id)
+        ->first();
+
+        if ($cek) {
+            return redirect()->back()->with('duplicate', true)->withInput();
+        }
         
         nilai_alternatif::create([
             'kriteria_id' => $request->kriteria_id,
@@ -61,7 +67,7 @@ class NilaiAlternatifController extends Controller
             'nilai' => $request->nilai
         ]);
 
-        return redirect()->route('nilai_alternatif.nilai_alternatif');
+        return redirect()->route('nilai_alternatif.nilai_alternatif')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -97,7 +103,14 @@ class NilaiAlternatifController extends Controller
             'subkriteria_id' => 'required',
             'nilai' => 'required'
         ]);
+        $cek = nilai_alternatif::where('alternatif_id', $request->alternatif_id)
+        ->where('subkriteria_id', $request->subkriteria_id)
+        ->where('id', '!=', $id) 
+        ->first();
 
+        if ($cek) {
+            return redirect()->back()->with('duplicate', true)->withInput();
+        }
         $nilaiAlternatif = nilai_alternatif::findOrFail($id);
         $nilaiAlternatif->update([
             'kriteria_id' => $request->kriteria_id,
@@ -105,7 +118,7 @@ class NilaiAlternatifController extends Controller
             'alternatif_id' => $request->alternatif_id,
             'nilai' => $request->nilai
         ]);
-        return redirect()->route('nilai_alternatif.nilai_alternatif');
+        return redirect()->route('nilai_alternatif.nilai_alternatif')->with('success', 'Data kriteria berhasil diperbarui!');
     }
 
     /**

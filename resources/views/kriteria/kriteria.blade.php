@@ -1,8 +1,8 @@
 @extends('layout.main')
 
 @section('content')
-    <div>
-        <h2 style="margin-top: 20px">Data Kreteria</h2>
+    <div style="margin-bottom: 50px;">
+        <h2 style="margin-top: 20px; ">Data Kreteria</h2>
         <table style="margin-top: 10px" class="table-data">
             <button type="button" style="margin-top: 20px" class="btn btn-tambah">
                 <a href="{{ route('kriteria.kriteria-entry') }}">Tambah Data</a>
@@ -12,6 +12,7 @@
                     <th>No</th>
                     <th style="width: 20%">Nama Kreteria</th>
                     <th style="width: 20%">Bobot</th>
+                    <th style="width: 20%">Type</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -21,7 +22,7 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $kriteria->nama }}</td>
                         <td>{{ $kriteria->bobot }}</td>
-
+                        <td>{{ $kriteria->type }}</td>
                         <td>
                             <a href="{{ route('kriteria.kriteria-edit', ['id' => $kriteria->id]) }}" class="btn btn-edit"
                                 style="display: inline-block;">

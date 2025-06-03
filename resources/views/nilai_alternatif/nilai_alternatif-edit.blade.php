@@ -42,6 +42,19 @@
             </button>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Jika session duplicate muncul, tampilkan popup --}}
+    @if (session('duplicate'))
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                title: 'Data Duplikat',
+                text: 'Subkriteria sudah pernah dinilai untuk alternatif ini.',
+                confirmButtonText: 'Oke',
+            });
+        </script>
+    @endif
     <script>
         $(document).ready(function() {
             const selectedSubkriteriaId = "{{ $nilaiAlternatif->subkriteria_id }}";

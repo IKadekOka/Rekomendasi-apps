@@ -13,13 +13,12 @@ class kriteria extends Model
     public $incrementing = true;
     protected $fillable = [
         'nama', 
-        'bobot',  
+        'bobot', 
+        'type', 
     ];
     public $timestamps = false;
     public function sub_kriterias()
     {
         return $this->hasMany(SubKriteria::class);
     }
-
-
 }

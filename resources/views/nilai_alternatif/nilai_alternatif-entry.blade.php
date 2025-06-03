@@ -7,6 +7,7 @@
         <form action="{{ route('nilai_alternatif.nilai_alternatif-store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <select class="input" for="kriteria" name="alternatif_id" id="alternatif" placeholder="alternatif" value="">
+                <option value="">-- Pilih Alternatif --</option>
                 @foreach ($alternatifs as $alternatif)
                     <option value="{{ $alternatif->id }}">{{ $alternatif->nama }}</option>
                 @endforeach
@@ -22,9 +23,11 @@
                 <option value="">-- Pilih Subkriteria --</option>
             </select>
 
-            <label for="nilai">nilai</label>
-            <input class="input" type="text" name="nilai" id="nilai" placeholder="nilai" value="" />
-            
+            <label for="nilai_display">Nilai</label>
+            <input class="input" type="text" id="nilai_display" placeholder="nilai" oninput="formatAndSync(this)" />
+
+            <input type="hidden" name="nilai" id="nilai" />
+
             <div id="skala_info" style="margin-top: 20px;"></div>
 
             <button type="submit" class="btn btn-simpan" name="simpan" style="margin-top: 50px">
@@ -32,6 +35,20 @@
             </button>
         </form>
     </div>
+    {{-- Tambahkan CDN SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Jika session duplicate muncul, tampilkan popup --}}
+    @if (session('duplicate'))
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                title: 'Data Duplikat',
+                text: 'Subkriteria sudah pernah dinilai untuk alternatif ini.',
+                confirmButtonText: 'Oke',
+            });
+        </script>
+    @endif
     <script>
         $('#kriteria').on('change', function() {
             var kriteriaId = $(this).val();
@@ -79,5 +96,13 @@
                 });
             }
         });
+
+        function formatAndSync(input) {
+            let angkaBersih = input.value.replace(/\D/g, ''); // hanya angka
+            let denganTitik = angkaBersih.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+            input.value = denganTitik; // tampilkan ke user
+            document.getElementById('nilai').value = angkaBersih; // isi input hidden
+        }
     </script>
 @endsection

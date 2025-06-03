@@ -18,6 +18,15 @@
     <p style="font-size: 10px; color: red">{{ $message }}</p>
     @enderror
 
+    <label for="type">Type</label>
+    <select class="input" for="type" name="type" id="type" placeholder="type" value="">
+      <option value="">-- Pilih Type --</option>
+      <option value="cost" {{ old('type', $kriteria->type ?? '') == 'cost' ? 'selected' : '' }}>cost
+      </option>
+      <option value="benefit" {{ old('type', $kriteria->type ?? '') == 'benefit' ? 'selected' : '' }}>benefit
+      </option>
+  </select>
+
     <button type="submit" class="btn btn-simpan" name="edit" style="margin-top: 50px">
       Edit
     </button>

@@ -23,13 +23,15 @@ class KriteriaController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'bobot' =>'required',
+            'type' =>'required',
         ]);
         kriteria::create([
             'nama' => $request->nama,
             'bobot' => $request->bobot,
+            'type' => $request->type,
         ]);
 
-        return redirect('/kriteria');
+        return redirect('/kriteria')->with('success', 'Data kriteria berhasil ditambahkan!');
     }
     public function edit($id)
     {
@@ -41,14 +43,16 @@ class KriteriaController extends Controller
         $this->validate($request,[
             'nama' => 'required',
             'bobot' => 'required',
+            'type' => 'required',
         ]);
 
         $kriteria = kriteria::find($id);
         $kriteria->update([
             'nama' => $request->nama,
             'bobot' => $request->bobot,
+            'type' => $request->type,
         ]);
-        return redirect('/kriteria');
+        return redirect('/kriteria')->with('success', 'Data kriteria berhasil diperbarui!');
     }
     public function hapus($id)
     {

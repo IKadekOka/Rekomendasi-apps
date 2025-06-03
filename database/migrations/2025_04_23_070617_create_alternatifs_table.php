@@ -12,11 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('alternatifs', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama',50);
-            $table->string('lokasi',50);
+            $table->id(); // primary key auto increment
+            $table->string('nama', 100);
+            $table->string('lokasi', 255);
+            $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('latitude', 18, 15);
             $table->decimal('longitude', 18, 15);            
+            $table->string('gambar');            
             $table->timestamps();
         });
     }
